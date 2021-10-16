@@ -11,6 +11,7 @@ services:
             - ./Docker/volumes/MongoDB:/data/db
     mongo-express:
         image: mongo-express
+        restart: always
         environment:
             - ME_CONFIG_MONGODB_SERVER=mongo
             - ME_CONFIG_MONGODB_PORT=27017
@@ -26,3 +27,26 @@ services:
             - mongo
         ports:
           - "8081:8081"
+    db:
+      container_name: pg_container
+      image: postgres
+      restart: always
+      environment:
+        - POSTGRES_USER=${POSTGRES_USER}
+        - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+        - POSTGRES_DB=${POSTGRES_DB}
+      volumes:
+        - ./queries/start_db.sql:/docker-entrypoint-initdb.d/init.sql
+      ports:
+        - "5432:5432"
+    pgadmin:
+      container_name: pgadmin4_container
+      image: dpage/pgadmin4
+      restart: always
+      environment:
+        - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+        - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+      depends_on:
+        - db
+      ports:
+        - "5050:80"
