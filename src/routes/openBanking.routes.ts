@@ -1,15 +1,11 @@
 import { Router } from "express";
 
-import CreateConectionOpenBanking from "../resources/OpenBanking/CreateConectionOpenBanking";
+import { OpenBankingController } from "../resources/OpenBanking/controllers/OpenBanking.controller";
 
 const openBankingRoutes = Router();
 
-openBankingRoutes.get("/open-banking", (request, response) => {
-  const responseConection = CreateConectionOpenBanking.execute();
+const openBankingController = new OpenBankingController();
 
-  return response.json({
-    message: responseConection,
-  });
-});
+openBankingRoutes.get("/open-banking", openBankingController.create);
 
 export default openBankingRoutes;

@@ -1,0 +1,14 @@
+{ 
+  "openapi": "3.0.0",
+  "info": { 
+    "title": "CodeWay Api Bank",
+    "description": "central api open banking and internal date bny",
+    "version": "1.0.0",
+    "contact": { 
+      "email": "luanbqs@gmail.com"
+    }
+  },
+  "paths": { 
+    
+  }
+}
