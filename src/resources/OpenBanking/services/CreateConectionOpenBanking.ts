@@ -4,4 +4,4 @@ class CreateConectionOpenBanking {
   }
 }
 
-export default new CreateConectionOpenBanking();
+export default CreateConectionOpenBanking;
