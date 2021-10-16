@@ -280,3 +280,4 @@ CREATE TABLE IF NOT EXISTS Emails (
         FOREIGN KEY(personalId)
             REFERENCES PersonalIdentificationData(personalId)
 );
+
