@@ -4,6 +4,7 @@ import express from "express";
 import swaggerUi from "swagger-ui-express";
 
 import openBankingRoutes from "./routes/openBanking.routes";
+import bancoInternoRoutes from "./routes/bancoInterno.routes";
 import swaggerFile from "./swagger.json";
 
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use(openBankingRoutes);
+app.use(bancoInternoRoutes);
 
 app.get("/", (request, response) => {
   return response.json({
