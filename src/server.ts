@@ -3,19 +3,18 @@ import * as dotenv from "dotenv";
 import express from "express";
 import swaggerUi from "swagger-ui-express";
 
-import openBankingRoutes from "./routes/openBanking.routes";
+import routes from "./routes";
 import swaggerFile from "./swagger.json";
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
-
 app.use(express.json());
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
-app.use(openBankingRoutes);
+app.use(routes);
 
 app.get("/", (request, response) => {
   return response.json({
