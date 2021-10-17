@@ -1,23 +1,25 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
-@Entity({ name: "nationality" })
-export class Nationality {
+@Entity({ name: "Phones" })
+export class Phones {
     @PrimaryGeneratedColumn
     id!:number;
     @Column
-    otherNationalitiesInfo!:string;
+    isMain!:string;
     @Column
     type!:string;
     @Column
+    additionalInfo!:string;
+    @Column
+    countryCallingCode!:string;
+    @Column
+    areaCode!:string;
+    @Column
     number!:string;
     @Column
-    expirationDate!:string;
-    @Column
-    issueDate!:string;
-    @Column
-    country!:string;
-    @Column
-    typeAdditionalInfo!:string;
+    phoneExtension!:string;
     @Column
     personalId!:string;
+    @Column
+    businessId!:string;
 }
