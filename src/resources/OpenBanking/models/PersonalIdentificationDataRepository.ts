@@ -4,8 +4,8 @@ import { PersonalIdentificationData } from "./PersonalIdentificationData";
 @EntityRepository(PersonalIdentificationData)
 export class PersonalIdentificationDataRepository extends Repository<PersonalIdentificationData> {
   findByPersonalId(personalId: string) {
-    return this.createQueryBuilder("personalidentificationdata")
-      .where("personalidentificationdata.personalId = :personalId", { personalId })
+    return this.createQueryBuilder("PersonalIdentificationData")
+      .where("PersonalIdentificationData.personalId = :personalId", { personalId })
       .getOne();
   }
 }
