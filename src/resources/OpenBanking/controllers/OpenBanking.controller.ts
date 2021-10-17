@@ -11,14 +11,14 @@ export class OpenBankingController {
     const responseConection = createConectionOpenBanking.execute();
 
     return response.json({
-      message: responseConection,
+      ...responseConection,
     });
   }
 
   async getNaturalPersonIdentification(request: Request, response: Response) {
     const createConectionOpenBanking = new CreateConectionOpenBanking();
     const responseConection = await createConectionOpenBanking.execute();
-    const cpf = request.query.cpfNumber
+    const cpf = request.query.cpfNumber;
     const query = `
     SELECT * 
     FROM 
@@ -39,18 +39,17 @@ export class OpenBankingController {
       ON em.personalid = pid.personalid
   WHERE
     pd.cpfnumber = '${cpf}'`;
-    const rsp = await responseConection.query(query)
-    responseConection.close()
+    const rsp = await responseConection.query(query);
+    responseConection.close();
     return response.json({
-      message: rsp[0],
+      ...rsp[0],
     });
   }
-
 
   async getBusinessPersonIdentification(request: Request, response: Response) {
     const createConectionOpenBanking = new CreateConectionOpenBanking();
     const responseConection = await createConectionOpenBanking.execute();
-    const cnpj = request.query.cnpjNumber
+    const cnpj = request.query.cnpjNumber;
     const query = `SELECT 
                         * 
                    FROM 
@@ -68,18 +67,17 @@ export class OpenBankingController {
                   WHERE
                     bid.cnpjnumber = '${cnpj}'
       `;
-      const rsp = await responseConection.query(query);
-      responseConection.close()
+    const rsp = await responseConection.query(query);
+    responseConection.close();
     return response.json({
-      message: rsp[0],
+      ...rsp[0],
     });
   }
-
 
   async getNaturalPersonQualification(request: Request, response: Response) {
     const createConectionOpenBanking = new CreateConectionOpenBanking();
     const responseConection = await createConectionOpenBanking.execute();
-    const cpf = request.query.cpfNumber
+    const cpf = request.query.cpfNumber;
     const query = `SELECT 
                         * 
                    FROM 
@@ -89,17 +87,17 @@ export class OpenBankingController {
                    WHERE
                      pd.cpfnumber = '${cpf}'
       `;
-      const rsp = await responseConection.query(query);
-      responseConection.close()
+    const rsp = await responseConection.query(query);
+    responseConection.close();
     return response.json({
-      message: rsp[0],
+      ...rsp[0],
     });
   }
 
   async getBusinessPersonQualification(request: Request, response: Response) {
     const createConectionOpenBanking = new CreateConectionOpenBanking();
     const responseConection = await createConectionOpenBanking.execute();
-    const cnpj = request.query.cnpjNumber
+    const cnpj = request.query.cnpjNumber;
     const query = `SELECT 
                         * 
                    FROM 
@@ -109,17 +107,17 @@ export class OpenBankingController {
                    WHERE
                      bid.cnpjnumber = '${cnpj}'
       `;
-      const rsp= await responseConection.query(query);
-      responseConection.close()
+    const rsp = await responseConection.query(query);
+    responseConection.close();
     return response.json({
-      message: rsp[0],
+      ...rsp[0],
     });
   }
 
   async getNaturalPersonFinancial(request: Request, response: Response) {
     const createConectionOpenBanking = new CreateConectionOpenBanking();
     const responseConection = await createConectionOpenBanking.execute();
-    const cpf = request['body']['cpfNumber']
+    const cpf = request.body.cpfNumber;
     const query = `SELECT 
                         * 
                    FROM 
@@ -131,32 +129,32 @@ export class OpenBankingController {
                    WHERE
                     bid.cpfnumber = '${cpf}'
       `;
-      const rsp = await responseConection.query(query);
-      responseConection.close()
+    const rsp = await responseConection.query(query);
+    responseConection.close();
     return response.json({
-      message: rsp[0],
+      ...rsp[0],
     });
   }
 
   async getNaturalBusinessFinancial(request: Request, response: Response) {
     const createConectionOpenBanking = new CreateConectionOpenBanking();
     const responseConection = await createConectionOpenBanking.execute();
-    const cnpj = request.query.cnpjNumber
-    const query = `SELECT 
+    const cnpj = request.query.cnpjNumber;
+    const query = ` SELECT 
                         * 
-                   FROM 
-                        personaldocuments AS pd
+                    FROM 
+                        businessidentificationdata AS pd
                     INNER JOIN businessfinancialrelationdata AS bfr
-                      ON pd.businessId = pfr.businessId
+                      ON pd.businessId = bfr.businessId
                     INNER JOIN businessprocurator AS bp
                       ON bp.businessId = pd.businessId
-                   WHERE
-                     pd.cnpjNumber = '${cnpj}'
+                    WHERE
+                    pd.cnpjNumber = '${cnpj}'
       `;
-      const rsp = await responseConection.query(query);
-      responseConection.close()
+    const rsp = await responseConection.query(query);
+    responseConection.close();
     return response.json({
-      message: rsp[0],
+      ...rsp[0],
     });
   }
 
