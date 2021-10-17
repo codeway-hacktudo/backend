@@ -13,5 +13,6 @@ openBankingRoutes.get("/open-banking/getPersonalFin", openBankingController.getN
 openBankingRoutes.get("/open-banking/getBusinessFin", openBankingController.getNaturalBusinessFinancial)
 openBankingRoutes.get("/open-banking/getPersonalQuali", openBankingController.getNaturalPersonQualification)
 openBankingRoutes.get("/open-banking/getBusinessQuali", openBankingController.getBusinessPersonQualification)
+openBankingRoutes.get("/open-banking/getPartiesInfo", openBankingController.getPartiesMembers)
 
 export default openBankingRoutes;

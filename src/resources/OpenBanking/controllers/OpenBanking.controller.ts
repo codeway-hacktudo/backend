@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { query, Request, Response } from "express";
 
 import CreateConectionOpenBanking from "../services/CreateConectionOpenBanking";
 
@@ -158,5 +158,57 @@ export class OpenBankingController {
     return response.json({
       message: rsp[0],
     });
+  }
+
+  async getPartiesMembers(request: Request, response: Response){
+    const createConectionOpenBanking = new CreateConectionOpenBanking();
+    const responseConection = await createConectionOpenBanking.execute();
+    const cnpj = request.query.cnpjNumber
+    const query_parties = `
+    SELECT 
+      pp.*
+    FROM
+    businessidentificationdata AS bid
+    INNER JOIN 
+    partiesparticipation AS pp
+      ON pp.businessId = bid.businessId
+    WHERE
+    bid.cnpjNumber ='${cnpj}'
+    `
+    const partie_array = await responseConection.query(query_parties)
+    let parties_cpf = []
+    await Promise.all(partie_array.map( async element => {
+      if (element.documenttype == 'CNPJ' ){
+        const query = `
+            SELECT * 
+            FROM 
+              personalotherdocument AS pd
+            INNER JOIN PersonalIdentificationData AS pid 
+              ON pd.personalid = pid.personalid
+            INNER JOIN personaldocuments AS pod
+              ON pod.personalid = pid.personalid
+            INNER JOIN nationality AS nat
+              ON nat.personalid = pid.personalid
+            INNER JOIN filiation AS fil
+              ON fil.personalid = pid.personalid
+            INNER JOIN postaladdress  AS pa
+              ON pa.personalid = pid.personalid
+            INNER JOIN phones AS ph
+              ON ph.personalid = pid.personalid
+            INNER JOIN emails AS em
+              ON em.personalid = pid.personalid
+          WHERE
+              pd.type = 'CNPJ' AND
+                pd.number = '${element.documentnumber}'
+                `
+        const rsp = await responseConection.query(query)
+        console.log(rsp)
+        parties_cpf.push(rsp[0])
+       }
+    }))
+    responseConection.close()
+    return response.json({
+      message: parties_cpf
+    })
   }
 }
