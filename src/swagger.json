@@ -50,6 +50,37 @@
         }
       }
     },
+    "/banco-interno/mocked": { 
+      "get": { 
+        "tags": ["Internal Bank"],
+        "summary": "Internal Bank",
+        "description": "Get Internal Bank",
+        "parameters": [],
+        "responses": { 
+          "200": { 
+            "description": "Success",
+            "content": { 
+              "application/json": { 
+                "schema": { 
+                  "type":"object",
+                  "properties": { 
+                    "id": { 
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { 
+            "description": "not authorized"
+          },
+          "500": { 
+            "description": "error"
+          }
+        }
+      }
+    },
     "/open-banking/getPersonalInfo": { 
       "get": { 
         "tags": ["Open Banking"],
