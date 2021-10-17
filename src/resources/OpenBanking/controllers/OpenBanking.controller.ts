@@ -11,7 +11,7 @@ export class OpenBankingController {
     const responseConection = createConectionOpenBanking.execute();
 
     return response.json({
-      message: responseConection,
+      ...responseConection,
     });
   }
 
@@ -42,7 +42,7 @@ export class OpenBankingController {
     const rsp = await responseConection.query(query);
     responseConection.close();
     return response.json({
-      message: rsp[0],
+      ...rsp[0],
     });
   }
 
@@ -70,7 +70,7 @@ export class OpenBankingController {
     const rsp = await responseConection.query(query);
     responseConection.close();
     return response.json({
-      message: rsp[0],
+      ...rsp[0],
     });
   }
 
@@ -90,7 +90,7 @@ export class OpenBankingController {
     const rsp = await responseConection.query(query);
     responseConection.close();
     return response.json({
-      message: rsp[0],
+      ...rsp[0],
     });
   }
 
@@ -110,7 +110,7 @@ export class OpenBankingController {
     const rsp = await responseConection.query(query);
     responseConection.close();
     return response.json({
-      message: rsp[0],
+      ...rsp[0],
     });
   }
 
@@ -132,7 +132,7 @@ export class OpenBankingController {
     const rsp = await responseConection.query(query);
     responseConection.close();
     return response.json({
-      message: rsp[0],
+      ...rsp[0],
     });
   }
 
@@ -154,7 +154,7 @@ export class OpenBankingController {
     const rsp = await responseConection.query(query);
     responseConection.close();
     return response.json({
-      message: rsp[0],
+      ...rsp[0],
     });
   }
 }
