@@ -4,8 +4,8 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 class CreateConectionOpenBanking {
-  execute() {
-    const conn = createConnection(
+  async execute() {
+    const conn = await createConnection(
       {type: "postgres",
       host: "localhost",
       port: 5432,
