@@ -9,6 +9,304 @@
     }
   },
   "paths": { 
-    
+    "/authentication": { 
+      "post": { 
+        "tags": ["Authentication"],
+        "summary": "Create a authentication",
+        "description": "Validating whether the user is himself by artificial intelligence",
+        "requestBody": { 
+          "content": { 
+            "multipart/form-data": { 
+              "schema": { 
+                "type": "formData",
+                "properties": { 
+                  "idPhoto": { 
+                    "name": "upfile",
+                    "type":  "file",
+                    "description": "The photo to upload."
+                  }
+                },
+                "example": { 
+                  "idPhoto": { 
+                    "name": "upfile",
+                    "type":  "file",
+                    "description": "The photo to upload."
+                 }
+                }
+              }
+            }
+          }
+        },
+        "responses": { 
+          "200": { 
+            "description": "authorized"
+          },
+          "401": { 
+            "description": "not authorized"
+          },
+          "500": { 
+            "description": "error"
+          }
+        }
+      }
+    },
+    "/open-banking/getPersonalInfo": { 
+      "get": { 
+        "tags": ["Open Banking"],
+        "summary": "Personal Info",
+        "description": "Get Natural Person Identification",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "cpfNumber",
+            "description": "cpf client",
+            "required": true,
+            "schema": {
+              "cpfNumber": { 
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": { 
+          "200": { 
+            "description": "Success",
+            "content": { 
+              "application/json": { 
+                "schema": { 
+                  "type":"object",
+                  "properties": { 
+                    "id": { 
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { 
+            "description": "not authorized"
+          },
+          "500": { 
+            "description": "error"
+          }
+        }
+      }
+    },
+    "/open-banking/getBusinessInfo": { 
+      "get": { 
+        "tags": ["Open Banking"],
+        "summary": "Business Info",
+        "description": "Get Business Person Identification",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "cnpjNumber",
+            "description": "cnpjNumber client",
+            "required": true,
+            "schema": {
+              "cnpjNumber": { 
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": { 
+          "200": { 
+            "description": "Success",
+            "content": { 
+              "application/json": { 
+                "schema": { 
+                  "type":"object",
+                  "properties": { 
+                    "id": { 
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { 
+            "description": "not authorized"
+          },
+          "500": { 
+            "description": "error"
+          }
+        }
+      }
+    },
+    "/open-banking/getPersonalFin": { 
+      "get": { 
+        "tags": ["Open Banking"],
+        "summary": "Personal Info",
+        "description": "Get Natural Person Financial",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "cpfNumber",
+            "description": "cpf client",
+            "required": true,
+            "schema": {
+              "cpfNumber": { 
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": { 
+          "200": { 
+            "description": "Success",
+            "content": { 
+              "application/json": { 
+                "schema": { 
+                  "type":"object",
+                  "properties": { 
+                    "id": { 
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { 
+            "description": "not authorized"
+          },
+          "500": { 
+            "description": "error"
+          }
+        }
+      }
+    },
+    "/open-banking/getBusinessFin": { 
+      "get": { 
+        "tags": ["Open Banking"],
+        "summary": "Business Info",
+        "description": "Get Business Person Financial",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "cnpjNumber",
+            "description": "cnpjNumber client",
+            "required": true,
+            "schema": {
+              "cnpjNumber": { 
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": { 
+          "200": { 
+            "description": "Success",
+            "content": { 
+              "application/json": { 
+                "schema": { 
+                  "type":"object",
+                  "properties": { 
+                    "id": { 
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { 
+            "description": "not authorized"
+          },
+          "500": { 
+            "description": "error"
+          }
+        }
+      }
+    },
+    "/open-banking/getPersonalQuali": { 
+      "get": { 
+        "tags": ["Open Banking"],
+        "summary": "Personal Info",
+        "description": "Get Natural Person Qualification",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "cpfNumber",
+            "description": "cpf client",
+            "required": true,
+            "schema": {
+              "cpfNumber": { 
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": { 
+          "200": { 
+            "description": "Success",
+            "content": { 
+              "application/json": { 
+                "schema": { 
+                  "type":"object",
+                  "properties": { 
+                    "id": { 
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { 
+            "description": "not authorized"
+          },
+          "500": { 
+            "description": "error"
+          }
+        }
+      }
+    },
+    "/open-banking/getBusinessQuali": { 
+      "get": { 
+        "tags": ["Open Banking"],
+        "summary": "Business Info",
+        "description": "Get Business Person Qualification",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "cnpjNumber",
+            "description": "cnpjNumber client",
+            "required": true,
+            "schema": {
+              "cnpjNumber": { 
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": { 
+          "200": { 
+            "description": "Success",
+            "content": { 
+              "application/json": { 
+                "schema": { 
+                  "type":"object",
+                  "properties": { 
+                    "id": { 
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { 
+            "description": "not authorized"
+          },
+          "500": { 
+            "description": "error"
+          }
+        }
+      }
+    }
   }
 }

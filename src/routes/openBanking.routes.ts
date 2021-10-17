@@ -12,7 +12,7 @@ openBankingRoutes.get(
   openBankingController.getNaturalPersonIdentification
 );
 openBankingRoutes.get(
-  "/open-banking/getBusineessInfo",
+  "/open-banking/getBusinessInfo",
   openBankingController.getBusinessPersonIdentification
 );
 openBankingRoutes.get(
